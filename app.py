@@ -13,6 +13,9 @@ container = client.containers.get(os.path.expandvars('${SRCDS_CONTAINER_NAME}'))
 
 address = (os.path.expandvars('${SRCDS_HOST}'), int(os.path.expandvars('${SRCDS_PORT}')))
 
+print('Wait for 60 seconds to ensure the server is available on start')
+time.sleep(60)
+
 errorCount = 0
 
 while True:
