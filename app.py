@@ -23,20 +23,21 @@ while True:
         a2s.info(address)
     
     except socket.timeout:
-        errorCount += 2
-        print('Socket Timeout, Error Count:', errorCount - 1)
+        errorCount += 1
+        print('Socket Timeout, Error Count:', errorCount)
 
     except socket.gaierror:
-        errorCount += 2
-        print('No Route to Host, Error Count:', errorCount - 1)
+        errorCount += 1
+        print('No Route to Host, Error Count:', errorCount)
 
     except ConnectionRefusedError:
-        errorCount += 2
-        print('Connection Refused, Error Count:', errorCount - 1)
+        errorCount += 1
+        print('Connection Refused, Error Count:', errorCount)
+    
+    else:
+        errorCount = 0
 
     finally:
-        if errorCount > 0:
-            errorCount -= 1
         if errorCount == 5:
             print('Server Restarting...')
             errorCount = 0;
