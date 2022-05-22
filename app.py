@@ -7,14 +7,15 @@ import time
 print('Target Container Name:', os.path.expandvars('${SRCDS_CONTAINER_NAME}'))
 print('Target SRCDS Host:', os.path.expandvars('${SRCDS_HOST}'))
 print('Target SRCDS Port:', os.path.expandvars('${SRCDS_PORT}'))
+print('Initial Wating Time:', os.path.expandvars('${INITIAL_WATING_TIME}'))
 
 client = docker.from_env()
 container = client.containers.get(os.path.expandvars('${SRCDS_CONTAINER_NAME}'))
 
 address = (os.path.expandvars('${SRCDS_HOST}'), int(os.path.expandvars('${SRCDS_PORT}')))
 
-print('Wait for 60 seconds to ensure the server is available on start')
-time.sleep(60)
+print(f'Wait for {os.path.expandvars('${INITIAL_WATING_TIME}')} seconds to ensure the server is available on start')
+time.sleep(int(os.path.expandvars('${INITIAL_WATING_TIME}')))
 
 errorCount = 0
 
